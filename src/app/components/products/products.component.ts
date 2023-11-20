@@ -12,6 +12,16 @@ export class ProductsComponent implements OnInit {
 	myShoppingCart: Product[] = [];
 	total = 0;
 	products: Product[] = [];
+	showProductDetail = false;
+
+	productChosen: Product = {
+		id: "",
+		title: "",
+		price: 0,
+		image: "",
+		description: "",
+		category: "",
+	};
 
 	//inyección de dependencias
 	constructor(
@@ -29,5 +39,18 @@ export class ProductsComponent implements OnInit {
 		//this.myShoppingCart.push(product);
 		this.storeService.addProduct(product);
 		this.total = this.storeService.getTotal();
+	}
+	//cambia el estado del menu lateral
+	toggleProductDetail() {
+		this.showProductDetail = !this.showProductDetail;
+	}
+
+	//como recibe un atributo hay que agregar en html el $event
+	onShowDetail(id: string) {
+		this.productsService.getProduct(id).subscribe((data) => {
+			console.log("product", data);
+			this.toggleProductDetail(); //para activar el layout
+			this.productChosen = data;
+		});
 	}
 }

@@ -20,8 +20,14 @@ export class ProductComponent {
 	};
 
 	@Output() addedProduct = new EventEmitter<Product>();
+	@Output() showProduct = new EventEmitter<string>(); //para que se muestre un producto
 
 	onAddToCart() {
 		this.addedProduct.emit(this.product);
+	}
+	//para mostrar el detalle de cada producto
+
+	onShowDetail() {
+		this.showProduct.emit(this.product.id);
 	}
 }
