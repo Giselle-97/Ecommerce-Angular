@@ -1,0 +1,94 @@
+<div class="mobile">
+	<div class="container-nav-mobile">
+		<button (click)="toggleMenu()" class="btn-menu">
+			<img [src]="imgMenu" alt="menu" class="imgMenu" />
+		</button>
+		<a href="">
+			<img [src]="imgLogo" alt="" class="img-logo" />
+		</a>
+		<div>
+			<a class="img-car">
+				<img [src]="imgShoppingCar" alt="" class="imgShoppingCar" />
+			</a>
+			<div class="shopping-cart-container">
+				<span class="counter">{{ counter }}</span>
+			</div>
+		</div>
+	</div>
+	<div class="side--menu" [class.active]="activeMenu">
+		<div class="box-btnCloseMenu">
+			<button (click)="toggleMenu()" class="btnCloseMenu">Close</button>
+		</div>
+		<nav>
+			<ul class="list-ul">
+				<li class="list-li">
+					<a
+						class="link"
+						routerLink="/products"
+						routerLinkActive="active"
+						ariaCurrentWhenActive="page"
+						>Products</a
+					>
+				</li>
+				<li class="list-li">
+					<a
+						class="link"
+						routerLink="/register"
+						routerLinkActive="active"
+						ariaCurrentWhenActive="page"
+						>Register</a
+					>
+				</li>
+				<li class="list-li">
+					<a class="link" routerLink="/login">Login</a>
+				</li>
+			</ul>
+		</nav>
+	</div>
+</div>
+
+<div class="hide-mobile">
+	<div class="container-nav">
+		<nav class="side--menu">
+			<ul class="list-ul">
+				<li class="list-li">
+					<a
+						class="link"
+						routerLink="/products"
+						routerLinkActive="active"
+						ariaCurrentWhenActive="page"
+						>Products</a
+					>
+				</li>
+				<!--<li class="list-li">
+					<a
+						class="link"
+						routerLink="/register"
+						routerLinkActive="active"
+						ariaCurrentWhenActive="page"
+						>Register</a
+					>
+				</li>-->
+				<li class="list-li">
+					<a class="link" routerLink="/login">Login</a>
+				</li>
+			</ul>
+		</nav>
+		<a
+			class="link"
+			routerLink="/products"
+			routerLinkActive="active"
+			ariaCurrentWhenActive="page"
+		>
+			<img [src]="imgLogo" alt="" class="img-logo" />
+		</a>
+		<div>
+			<a class="img-car">
+				<img [src]="imgShoppingCar" alt="" class="imgShoppingCar" />
+			</a>
+			<div class="shopping-cart-container">
+				<span class="counter">{{ counter }}</span>
+			</div>
+		</div>
+	</div>
+</div>

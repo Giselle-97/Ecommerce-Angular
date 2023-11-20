@@ -1,0 +1,79 @@
+<div class="container-form">
+	<div class="box-form">
+		<form class="form" [formGroup]="form" (ngSubmit)="save($event)">
+			<h1 class="text-form">Login</h1>
+			<div class="box-input">
+				<label class="label" for="email">Email</label>
+				<input
+					class="input"
+					type="email"
+					name="email"
+					[class.is-valid]="isEmailFieldValid"
+					[class.is-invalid]="isEmailFieldInValid"
+					formControlName="email"
+					placeholder="Ex: pepito@gmail.com"
+				/>
+
+				<div class="messages" [class.active]="isEmailFieldInValid">
+					<p>
+						<strong *ngIf="emailField?.hasError('required')"
+							>This field is required</strong
+						>
+					</p>
+					<p>
+						<strong *ngIf="emailField?.hasError('email')"
+							>Invalid email</strong
+						>
+					</p>
+				</div>
+			</div>
+
+			<div class="box-input">
+				<label class="label" for="password">Password</label>
+				<input
+					class="input"
+					type="password"
+					name="password"
+					[class.is-valid]="isPasswordFieldValid"
+					[class.is-invalid]="isPasswordFieldInValid"
+					formControlName="password"
+					placeholder="Ex: Pepito10#"
+				/>
+				<div class="messages" [class.active]="isPasswordFieldInValid">
+					<p>
+						<strong *ngIf="passwordField?.hasError('required')"
+							>This field is required</strong
+						>
+					</p>
+					<p>
+						<strong *ngIf="passwordField?.hasError('password')"
+							>Invalid password</strong
+						>
+					</p>
+					<p>
+						<strong *ngIf="passwordField?.hasError('pattern')"
+							>The password must have special characters</strong
+						>
+					</p>
+				</div>
+			</div>
+			<p>
+				<button class="btn-form" type="submit">Login</button>
+				<!--[disabled]="form.invalid"-->
+			</p>
+		</form>
+	</div>
+</div>
+
+<div class="box-btn-register">
+	<p class="text-or">Or</p>
+	<button class="btn-form">
+		<a
+			class="link"
+			routerLink="/register"
+			routerLinkActive="active"
+			ariaCurrentWhenActive="page"
+			>Register</a
+		>
+	</button>
+</div>
