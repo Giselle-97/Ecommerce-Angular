@@ -1,15 +1,15 @@
-<h1 align="center">Online-Shopping</h1>
+<h1 align="center">Ecommerce-Angular</h1>
 
 <p align="center">
-  <img src="https://github.com/Giselle-97/CreArte-Store/assets/131615505/01799f72-bd17-499e-b0e0-158c964b4cdb" alt="logo Online Shopping" width="250px">
+  <img src="https://github.com/Giselle-97/Ecommerce-Angular/assets/131615505/01799f72-bd17-499e-b0e0-158c964b4cdb" alt="logo Ecommerce-Angular" width="250px">
 </p>
 
-<h2>Online Shopping - Aplicación Angular</h2>
-Online Shopping es una aplicación desarrollada en Angular que te permite practicar tus conocimientos en este framework. Es un proyecto personal en constante evolución y aprendizaje.
+<h2>Ecommerce-Angular</h2>
+Ecommerce-Angular es una aplicación desarrollada en Angular que te permite practicar tus conocimientos en este framework. Es un proyecto personal en constante evolución y aprendizaje.
 
 <h3>Vista previa👀</h3>
 Puedes ver una vista previa de la página web en línea haciendo clic en el siguiente enlace:
-<a href="https://giselle-97.github.io/Online Shopping /">Online Shopping - Vista previa</a>
+<a href="https://giselle-97.github.io/Ecommerce-Angular /">Ecommerce-Angular - Vista previa</a>
 
 <h3>Instrucciones de Configuración🛠️</h3>
 <ul>Antes de comenzar con la aplicación, asegúrate de tener las siguientes herramientas y dependencias instaladas en tu sistema:
