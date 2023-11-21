@@ -1,5 +1,6 @@
 <p>Cantidad:{{ myShoppingCart.length }}</p>
 <p>Total:€{{ total }}</p>
+<button class="btn-text" (click)="onShowDetail('28244')">not found</button>
 <button class="btn-text" (click)="createNewProduct()">Create</button>
 <div class="products">
 	<app-product
@@ -12,6 +13,7 @@
 	<button (click)="loadMore()">Load More</button>
 </div>
 <div class="product-detail" [class.active]="showProductDetail">
+	{{ statusDetail }}
 	<div *ngIf="productChosen">
 		<button (click)="toggleProductDetail()">Colse</button>
 		<img [src]="productChosen.image" width="100%" alt="" class="image" />

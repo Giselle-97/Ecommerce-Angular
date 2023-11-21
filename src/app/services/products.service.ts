@@ -1,17 +1,27 @@
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpParams } from "@angular/common/http";
+import {
+	HttpClient,
+	HttpParams,
+	HttpErrorResponse,
+	HttpStatusCode,
+} from "@angular/common/http";
 import {
 	Product,
 	CreateProductDTO,
 	UpdateProductDTO,
 } from "../models/product.model";
-import { retry } from "rxjs/operators"; //para reitnentar cargar la página si falla
+import { retry, catchError } from "rxjs/operators"; //para reitnentar cargar la página si falla
+import { throwError } from "rxjs";
+//import { environment } from "./../../environments/environment";
 
 @Injectable({
 	providedIn: "root",
 })
 export class ProductsService {
+	//private apiUrl = `${environment.API_URL}api/products`;
+	//private apiUrl = "/api/products";
 	private apiUrl = "https://fakestoreapi.com/products";
+	//package.json=> "start:proxy": "ng serve --proxy-config ./proxy.config.json",
 
 	constructor(private http: HttpClient) {}
 
@@ -30,7 +40,32 @@ export class ProductsService {
 
 	//request para obtener el id
 	getProduct(id: string) {
-		return this.http.get<Product>(`${this.apiUrl}/${id}`);
+		return this.http
+			.get<Product>(`${this.apiUrl}/${id}`)
+
+			.pipe(
+				catchError((error: HttpErrorResponse) => {
+					switch (error.status) {
+						case HttpStatusCode.Conflict:
+							return throwError(
+								() =>
+									new Error(
+										"Ups algo esta fallando en el server",
+									),
+							);
+
+						case HttpStatusCode.NotFound:
+							return throwError(
+								() => new Error("El producto no existe"),
+							);
+
+						default:
+							return throwError(
+								() => new Error("Ups algo salio mal"),
+							);
+					}
+				}),
+			);
 	}
 	//Paginación
 	getProductsByPage(limit: number, offset: number) {
