@@ -27,6 +27,9 @@ export class ProductsComponent implements OnInit {
 		category: "",
 	};
 
+	limit = 20;
+	offset = 0;
+
 	//inyección de dependencias
 	constructor(
 		private storeService: StoreService,
@@ -34,16 +37,22 @@ export class ProductsComponent implements OnInit {
 	) {
 		this.myShoppingCart = this.storeService.getShoppingCart();
 	}
-	ngOnInit(): void {
-		this.productsService.getAllProducts().subscribe((data) => {
+
+	/*ngOnInit(): void {
+		this.productsService.getAllProducts.subscribe((data) => {
 			this.products = data;
 		});
+	} */
+	ngOnInit(): void {
+		this.loadMore();
 	}
+
 	onAddToShoppingCart(product: Product) {
 		//this.myShoppingCart.push(product);
 		this.storeService.addProduct(product);
 		this.total = this.storeService.getTotal();
 	}
+
 	//cambia el estado del menu lateral
 	toggleProductDetail() {
 		this.showProductDetail = !this.showProductDetail;
@@ -57,6 +66,7 @@ export class ProductsComponent implements OnInit {
 			this.productChosen = data;
 		});
 	}
+
 	createNewProduct() {
 		const product: CreateProductDTO = {
 			title: "Nuevo producto",
@@ -97,5 +107,26 @@ export class ProductsComponent implements OnInit {
 			this.productChosen = data;
 		});
 	}
+	//método de eliminar elemento=splice
+	deleteProduct() {
+		const id = this.productChosen.id;
+		this.productsService.delete(id).subscribe(() => {
+			const productIndex = this.products.findIndex(
+				(item) => item.id === this.productChosen.id,
+			);
+			this.products.splice(productIndex, 1);
+			this.showProductDetail = false;
+		});
+	}
+	//cargar la siguiente pagina
+	loadMore() {
+		this.productsService
+			.getProductsByPage(this.limit, this.offset)
+			.subscribe((data) => {
+				this.products = this.products.concat(data); //concatenar el array que llegue
+				this.offset += this.limit;
+			});
+	}
+
 	//
 }

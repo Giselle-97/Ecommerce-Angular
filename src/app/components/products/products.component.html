@@ -9,6 +9,7 @@
 		(addedProduct)="onAddToShoppingCart($event)"
 		(showProduct)="onShowDetail($event)"
 	></app-product>
+	<button (click)="loadMore()">Load More</button>
 </div>
 <div class="product-detail" [class.active]="showProductDetail">
 	<div *ngIf="productChosen">
@@ -16,6 +17,7 @@
 		<img [src]="productChosen.image" width="100%" alt="" class="image" />
 		<h2>{{ productChosen.title }}</h2>
 		<p>{{ productChosen.description }}</p>
-		<button>Editar</button>
+		<button (click)="updateProduct()">Editar</button>
+		<button (click)="deleteProduct()">Delete</button>
 	</div>
 </div>
