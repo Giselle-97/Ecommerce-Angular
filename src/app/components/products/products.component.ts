@@ -71,7 +71,7 @@ export class ProductsComponent implements OnInit {
 		});
 	}
 
-	updateProduct() {
+	/*updateProduct() {
 		const changes: UpdateProductDTO = {
 			title: "nuevo title",
 		};
@@ -81,6 +81,20 @@ export class ProductsComponent implements OnInit {
 				(item) => item.id === this.productChosen.id,
 			); //para mostrar la actualización
 			this.products[productIndex] = data;
+		});
+	}*/
+	updateProduct() {
+		const changes = {
+			title: "Nuevo titulo klk",
+		};
+		const id = this.productChosen.id;
+		this.productsService.update(id, changes).subscribe((data) => {
+			console.log("Updated:", data);
+			const productIndex = this.products.findIndex(
+				(item) => item.id === this.productChosen.id,
+			);
+			this.products[productIndex] = data;
+			this.productChosen = data;
 		});
 	}
 	//
