@@ -13,8 +13,9 @@
 <div class="product-detail" [class.active]="showProductDetail">
 	<div *ngIf="productChosen">
 		<button (click)="toggleProductDetail()">Colse</button>
-		<img [src]="productChosen.image" width="100%" alt="" />
+		<img [src]="productChosen.image" width="100%" alt="" class="image" />
 		<h2>{{ productChosen.title }}</h2>
 		<p>{{ productChosen.description }}</p>
+		<button>Editar</button>
 	</div>
 </div>

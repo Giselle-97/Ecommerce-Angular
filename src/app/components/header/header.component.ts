@@ -9,7 +9,7 @@ import { StoreService } from "src/app/services/store.service";
 export class HeaderComponent implements OnInit {
 	title = "CreArte";
 	imgMenu = "./assets/images/menu.png";
-	imgLogo = "./assets/images/store-logo1.png";
+	imgLogo = "./assets/images/logo6.png";
 	imgShoppingCar = "./assets/images/car-menu.png";
 
 	activeMenu = false;
