@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import { Validators, FormGroup, FormBuilder } from "@angular/forms";
+import { AuthService } from "src/app/services/auth.service";
 
 @Component({
 	selector: "app-form-login",
@@ -9,7 +10,10 @@ import { Validators, FormGroup, FormBuilder } from "@angular/forms";
 export class FormLoginComponent {
 	form!: FormGroup;
 
-	constructor(private formBuilder: FormBuilder) {
+	constructor(
+		private formBuilder: FormBuilder,
+		private authService: AuthService,
+	) {
 		this.buildForm(); //llamamos al método
 	}
 
@@ -77,5 +81,13 @@ export class FormLoginComponent {
 	}
 	get isPasswordFieldInValid() {
 		return this.passwordField?.touched && this.passwordField.invalid;
+	}
+
+	login() {
+		this.authService
+			.login("gis@gmail.com", "123456Gis")
+			.subscribe((rta) => {
+				console.log(rta.access_token);
+			});
 	}
 }

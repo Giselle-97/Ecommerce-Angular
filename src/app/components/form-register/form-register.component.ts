@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Validators, FormGroup, FormBuilder } from "@angular/forms";
 import { MyValidators } from "src/app/validators/validators";
+import { UsersService } from "src/app/services/users.service";
 
 @Component({
 	selector: "app-form-register",
@@ -10,7 +11,10 @@ import { MyValidators } from "src/app/validators/validators";
 export class FormRegisterComponent implements OnInit {
 	form!: FormGroup;
 
-	constructor(private formBuilder: FormBuilder) {
+	constructor(
+		private formBuilder: FormBuilder,
+		private usersService: UsersService,
+	) {
 		this.buildForm(); //llamamos al método
 	}
 
@@ -124,5 +128,17 @@ export class FormRegisterComponent implements OnInit {
 			this.confirmPasswordField?.touched &&
 			this.confirmPasswordField.invalid
 		);
+	}
+	//
+	createUser() {
+		this.usersService
+			.create({
+				name: "Gis",
+				email: "gis@gmail.com",
+				password: "123456Gis",
+			})
+			.subscribe((rta) => {
+				console.log(rta);
+			});
 	}
 }
