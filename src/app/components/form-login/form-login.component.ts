@@ -9,6 +9,7 @@ import { AuthService } from "src/app/services/auth.service";
 })
 export class FormLoginComponent {
 	form!: FormGroup;
+	token = "";
 
 	constructor(
 		private formBuilder: FormBuilder,
@@ -85,9 +86,10 @@ export class FormLoginComponent {
 
 	login() {
 		this.authService
-			.login("gis@gmail.com", "123456Gis")
+			.login("gis@gmail.com", "123456Gis#")
 			.subscribe((rta) => {
 				console.log(rta.access_token);
+				this.token = rta.access_token;
 			});
 	}
 }
