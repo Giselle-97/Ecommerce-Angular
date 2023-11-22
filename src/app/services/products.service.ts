@@ -11,7 +11,7 @@ import {
 	UpdateProductDTO,
 } from "../models/product.model";
 import { retry, catchError, map } from "rxjs/operators"; //para reitnentar cargar la página si falla
-import { throwError } from "rxjs";
+import { throwError, zip } from "rxjs";
 //import { environment } from "./../../environments/environment";
 
 @Injectable({
@@ -84,6 +84,12 @@ export class ProductsService {
 					}),
 				),
 			);
+	}
+
+	//para hacer las dos cosas al mismo tiempo read an update
+	//zip para manejar varias peticiones en paralelo
+	fetchReadAndUpdate(id: string, dto: UpdateProductDTO) {
+		return zip(this.getProduct(id), this.update(id, dto));
 	}
 
 	//evento para el método post
