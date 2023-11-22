@@ -6,7 +6,7 @@ import {
 } from "src/app/models/product.model";
 import { ProductsService } from "src/app/services/products.service";
 import { StoreService } from "src/app/services/store.service";
-import Swal from "sweetalert2";
+//import Swal from "sweetalert2";
 
 @Component({
 	selector: "app-products",
@@ -18,6 +18,7 @@ export class ProductsComponent implements OnInit {
 	total = 0;
 	products: Product[] = [];
 	showProductDetail = false;
+	statusDetail: "loading" | "success" | "error" | "init" = "init"; //tiene todo los estados posibles que va a tener la peticion de detalle onShowDetail
 
 	productChosen: Product = {
 		id: "",
@@ -28,9 +29,8 @@ export class ProductsComponent implements OnInit {
 		category: "",
 	};
 
-	limit = 20;
+	limit = 10;
 	offset = 0;
-	statusDetail: "loading" | "success" | "error" | "init" = "init"; //tiene todo los estados posibles que va a tener la peticion de detalle onShowDetail
 
 	//inyección de dependencias
 	constructor(
@@ -62,39 +62,39 @@ export class ProductsComponent implements OnInit {
 
 	onShowDetail(id: string) {
 		this.statusDetail = "loading";
-		this.productsService.getProduct(id).subscribe({
-			next: (data) => {
-				this.toggleProductDetail();
-				this.productChosen = data;
-				this.statusDetail = "success";
-			},
-			error: (errorMsg) => {
-				this.statusDetail = "error";
-				Swal.fire({
-					title: "Error!",
-					text: errorMsg,
-					icon: "error",
-					confirmButtonText: "Ok",
-				});
-			},
-		});
-	}
-	/*
-	//como recibe un atributo hay que agregar en html el $event
-	onShowDetail(id: string) {
-		this.statusDetail = "loading";
+		this.toggleProductDetail();
 		this.productsService.getProduct(id).subscribe(
 			(data) => {
-				console.log("product", data);
-				this.toggleProductDetail(); //para activar el layout
 				this.productChosen = data;
 				this.statusDetail = "success";
 			},
-			(error) => {
-				console.error(error);
+			(errorMsg) => {
+				window.alert(errorMsg);
 				this.statusDetail = "error";
 			},
 		);
+	}
+
+	/*
+	//como recibe un atributo hay que agregar en html el $event
+onShowProductDetail(id: string) {
+    this.statusDetail = 'loading';
+    this.productsService.getProduct(id)
+      .pipe(
+        tap(() => this.toggleProductDetail()), // realiza una acción cuando se emite un valor
+        catchError((error) => { // maneja los errores que puedan ocurrir
+          console.error(error);
+          this.statusDetail = 'error';
+          return of(null); // retorna un observable con un valor nulo para que el flujo continúe
+        })
+      )
+      .subscribe((data) => {
+        if (data) { // verifica que la respuesta sea válida antes de asignarla
+          this.productChosen = data;
+          this.statusDetail = 'success';
+        }
+      });
+  }
 	}*/
 
 	createNewProduct() {
@@ -148,6 +148,7 @@ export class ProductsComponent implements OnInit {
 			this.showProductDetail = false;
 		});
 	}
+
 	//cargar la siguiente pagina
 	loadMore() {
 		this.productsService

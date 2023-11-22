@@ -1,6 +1,6 @@
 {
   "api/*": {
-    "target": "https://fakestoreapi.com/products",
+    "target": "https://fakestoreapi.com",
     "score": true,
     "logLevel":"debug",
     "changeOrigin": true

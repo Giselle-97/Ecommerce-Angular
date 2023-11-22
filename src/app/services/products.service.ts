@@ -10,7 +10,7 @@ import {
 	CreateProductDTO,
 	UpdateProductDTO,
 } from "../models/product.model";
-import { retry, catchError } from "rxjs/operators"; //para reitnentar cargar la página si falla
+import { retry, catchError, map } from "rxjs/operators"; //para reitnentar cargar la página si falla
 import { throwError } from "rxjs";
 //import { environment } from "./../../environments/environment";
 
@@ -18,16 +18,20 @@ import { throwError } from "rxjs";
 	providedIn: "root",
 })
 export class ProductsService {
-	//private apiUrl = `${environment.API_URL}api/products`;
-	//private apiUrl = "/api/products";
 	private apiUrl = "https://fakestoreapi.com/products";
+
+	//CORS
+	//private apiUrl = "/api/products";
 	//package.json=> "start:proxy": "ng serve --proxy-config ./proxy.config.json",
+
+	//MANEJO DE AMBIENTES
+	//private apiUrl = `${environment.API_URL}api/products`;
 
 	constructor(private http: HttpClient) {}
 
 	getAllProducts(limit?: number, offset?: number) {
 		let params = new HttpParams();
-		if (limit != undefined && offset != undefined) {
+		if (limit && offset) {
 			params = params.set("limit", limit);
 			params = params.set("offset", offset);
 		}
@@ -40,38 +44,46 @@ export class ProductsService {
 
 	//request para obtener el id
 	getProduct(id: string) {
-		return this.http
-			.get<Product>(`${this.apiUrl}/${id}`)
+		return this.http.get<Product>(`${this.apiUrl}/${id}`).pipe(
+			catchError((err: HttpErrorResponse) => {
+				if (err.status === HttpStatusCode.NotFound) {
+					return throwError(() => "Product not found");
+				}
+				if (err.status === HttpStatusCode.Forbidden) {
+					return throwError(
+						() =>
+							"You do not have permission to access this product",
+					);
+				}
+				if (err.status === HttpStatusCode.Unauthorized) {
+					return throwError(
+						() => "You must be logged in to access this product",
+					);
+				}
 
-			.pipe(
-				catchError((error: HttpErrorResponse) => {
-					switch (error.status) {
-						case HttpStatusCode.Conflict:
-							return throwError(
-								() =>
-									new Error(
-										"Ups algo esta fallando en el server",
-									),
-							);
-
-						case HttpStatusCode.NotFound:
-							return throwError(
-								() => new Error("El producto no existe"),
-							);
-
-						default:
-							return throwError(
-								() => new Error("Ups algo salio mal"),
-							);
-					}
-				}),
-			);
+				return throwError(
+					() => "An error has occurred, try again later",
+				);
+			}),
+		);
 	}
+
 	//Paginación
 	getProductsByPage(limit: number, offset: number) {
-		return this.http.get<Product[]>(`${this.apiUrl}/`, {
-			params: { limit, offset },
-		});
+		return this.http
+			.get<Product[]>(`${this.apiUrl}`, {
+				params: { limit, offset },
+			})
+			.pipe(
+				map((products) =>
+					products.map((item) => {
+						return {
+							...item,
+							taxes: 0.21 * item.price,
+						};
+					}),
+				),
+			);
 	}
 
 	//evento para el método post
