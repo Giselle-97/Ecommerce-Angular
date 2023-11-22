@@ -1,4 +1,12 @@
 <app-header class="header"></app-header>
+<p>
+	<a href="./assets/files/texto.txt" download>Download</a>
+</p>
+<p>
+	<input type="file" (change)="onUpload($event)" />
+	<img *ngIf="imgRta" [src]="imgRta" />
+</p>
+<hr />
 <div>
 	<router-outlet></router-outlet>
 </div>

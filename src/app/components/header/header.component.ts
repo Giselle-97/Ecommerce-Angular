@@ -13,7 +13,7 @@ export class HeaderComponent implements OnInit {
 	imgMenu = "./assets/images/menu.png";
 	imgLogo = "./assets/images/logo.png";
 	imgShoppingCar = "./assets/images/car-menu.png";
-	token = "";
+	//token = "";
 	profile: User | null = null;
 
 	activeMenu = false;
@@ -42,15 +42,8 @@ export class HeaderComponent implements OnInit {
 		// });
 		this.authService
 			.loginAndGet("sebas@mail.com", "1212")
-			.subscribe((user) => {
+			.subscribe((user: User | null) => {
 				this.profile = user;
-				this.token = "---";
 			});
-	}
-
-	getProfile() {
-		this.authService.getProfile(this.token).subscribe((user) => {
-			this.profile = user;
-		});
 	}
 }

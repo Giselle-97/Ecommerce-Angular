@@ -13,6 +13,7 @@ import { SearchComponent } from "./components/search/search.component";
 import { HeaderComponent } from "./components/header/header.component";
 import { FooterComponent } from "./components/footer/footer.component";
 import { TimeInterceptor } from "./interceptors/time.interceptor";
+import { TokenInterceptor } from "./interceptors/token.interceptor";
 
 @NgModule({
 	declarations: [
@@ -35,6 +36,11 @@ import { TimeInterceptor } from "./interceptors/time.interceptor";
 		{
 			provide: HTTP_INTERCEPTORS,
 			useClass: TimeInterceptor,
+			multi: true,
+		},
+		{
+			provide: HTTP_INTERCEPTORS,
+			useClass: TokenInterceptor,
 			multi: true,
 		},
 	],
