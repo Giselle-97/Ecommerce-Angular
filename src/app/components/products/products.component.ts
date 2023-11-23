@@ -1,10 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { switchMap, zip } from "rxjs";
-import {
-	Product,
-	CreateProductDTO,
-	UpdateProductDTO,
-} from "src/app/models/product.model";
+import { switchMap } from "rxjs";
+import { Product, CreateProductDTO } from "src/app/models/product.model";
 import { ProductsService } from "src/app/services/products.service";
 import { StoreService } from "src/app/services/store.service";
 //import Swal from "sweetalert2";

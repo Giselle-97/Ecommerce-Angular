@@ -12,17 +12,28 @@
 		(addedProduct)="onAddToShoppingCart($event)"
 		(showProduct)="onShowDetail($event)"
 	></app-product>
-	<button (click)="loadMore()">Load More</button>
+</div>
+<div class="box-btn-loadmore">
+	<button (click)="loadMore()" class="btn-loadmore">Load More</button>
 </div>
 
-<div class="product-detail" [class.active]="showProductDetail">
-	{{ statusDetail }}
-	<div *ngIf="productChosen">
-		<button (click)="toggleProductDetail()">Colse</button>
+<div class="box-product-detail" [class.active]="showProductDetail">
+	<!--{{ statusDetail }}-->
+	<div *ngIf="productChosen" class="product-detail">
+		<div class="box-btn-close">
+			<button (click)="toggleProductDetail()" class="btn-close-detail">
+				Close
+			</button>
+		</div>
 		<img [src]="productChosen.image" width="100%" alt="" class="image" />
-		<h2>{{ productChosen.title }}</h2>
-		<p>{{ productChosen.description }}</p>
-		<button (click)="updateProduct()">Editar</button>
-		<button (click)="deleteProduct()">Delete</button>
+		<h2 class="title-detail">{{ productChosen.title }}</h2>
+		<p class="price-detail">
+			Price:{{ productChosen.price | currency : "EUR" }}
+		</p>
+		<p class="text-description">{{ productChosen.description }}</p>
+		<div class="box-btn-detail">
+			<button (click)="updateProduct()" class="btn-detail">Editar</button>
+			<button (click)="deleteProduct()" class="btn-detail">Delete</button>
+		</div>
 	</div>
 </div>
