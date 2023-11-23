@@ -126,7 +126,17 @@
 	color: #fff;
 }
 
-@media screen and (min-width: 40em) {
+//tablet
+@media screen and (min-width: 768px) {
+	.products {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		grid-gap: 15px;
+	}
+}
+
+//desktop
+@media screen and (min-width: 1024px) {
 	.products {
 		display: grid;
 		grid-template-columns: repeat(4, 1fr);
@@ -187,18 +197,18 @@
 	}
 	.box-btn-close {
 		width: 100%;
-		transform: translateY(10px);
+		transform: translateY(5px);
 	}
 	.btn-close-detail {
 		border: solid 2px rgba(0, 0, 255, 0.712);
 		background-color: rgba(0, 0, 255, 0.712);
-		width: 60px;
-		font-size: 0.7rem;
+		width: 100px;
+		font-size: 0.9rem;
 		color: white;
 		text-transform: uppercase;
-		transform: translateY(-70px);
+		transform: translateY(-45px);
 		cursor: pointer;
-		padding: 5px;
+		padding: 10px;
 		font-weight: 700;
 		margin-left: 10px;
 	}
@@ -232,12 +242,12 @@
 		//border: none;
 		border: solid 2px rgba(0, 0, 255, 0.712);
 		background-color: rgba(0, 0, 255, 0.712);
-		width: 60px;
-		font-size: 0.7rem;
+		width: 100px;
+		font-size: 0.9rem;
 		color: white;
 		text-transform: uppercase;
 		cursor: pointer;
-		padding: 5px;
+		padding: 10px;
 		font-weight: 700;
 	}
 	//
