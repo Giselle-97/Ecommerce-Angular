@@ -1,5 +1,5 @@
-/*export const environment = {
+export const environment = {
 	production: false,
-	API_URL: "",
-};*/
+	API_URL: "/api",
+};
 //DESARROLLO

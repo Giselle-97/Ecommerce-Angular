@@ -26,7 +26,7 @@ export class ProductsComponent implements OnInit {
 		category: "",
 	};
 
-	limit = 10;
+	limit = 20;
 	offset = 0;
 
 	//inyección de dependencias

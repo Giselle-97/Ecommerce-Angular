@@ -13,7 +13,7 @@ import {
 import { retry, catchError, map } from "rxjs/operators"; //para reitnentar cargar la página si falla
 import { throwError, zip } from "rxjs";
 import { checkTime } from "../interceptors/time.interceptor";
-//import { environment } from "./../../environments/environment";
+import { environment } from "./../../environments/environment";
 
 @Injectable({
 	providedIn: "root",
@@ -37,7 +37,10 @@ export class ProductsService {
 			params = params.set("offset", offset);
 		}
 		return this.http
-			.get<Product[]>(this.apiUrl, { params, context: checkTime() })
+			.get<Product[]>(`${environment.API_URL}/products`, {
+				params,
+				context: checkTime(),
+			})
 			.pipe(retry(3));
 	}
 
