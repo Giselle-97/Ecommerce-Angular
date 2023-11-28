@@ -3,7 +3,12 @@
 		<button (click)="toggleMenu()" class="btn-menu">
 			<img [src]="imgMenu" alt="menu" class="imgMenu" />
 		</button>
-		<a href="">
+		<a
+			class="link"
+			routerLink="/home"
+			routerLinkActive="active"
+			ariaCurrentWhenActive="page"
+		>
 			<img [src]="imgLogo" alt="" class="img-logo" />
 		</a>
 		<div>
@@ -54,7 +59,7 @@
 				<li class="list-li">
 					<a
 						class="link"
-						routerLink="/products"
+						routerLink="/home"
 						routerLinkActive="active"
 						ariaCurrentWhenActive="page"
 						>Products</a
@@ -67,7 +72,7 @@
 		</nav>
 		<a
 			class="link"
-			routerLink="/products"
+			routerLink="/home"
 			routerLinkActive="active"
 			ariaCurrentWhenActive="page"
 		>
