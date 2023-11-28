@@ -1,6 +1,10 @@
-export const categories: string[] = [
-	"electronics",
-	"jewelery",
-	"men's clothing",
-	"women's clothing",
+export interface Category {
+	name: string;
+}
+
+export const categories: Category[] = [
+	{ name: "electronics" },
+	{ name: "jewelery" },
+	{ name: "men's clothing" },
+	{ name: "women's clothing" },
 ];

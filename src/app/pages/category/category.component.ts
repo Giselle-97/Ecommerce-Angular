@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
+import { switchMap } from "rxjs";
 import { Product } from "src/app/models/product.model";
 import { categories } from "src/app/models/category.model"; // Cambiado el path
 import { ProductsService } from "src/app/services/products.service";
@@ -21,19 +22,23 @@ export class CategoryComponent implements OnInit {
 	) {}
 
 	ngOnInit(): void {
-		this.route.paramMap.subscribe((params) => {
-			this.categoryName = params.get("name"); // Cambiado el nombre del parámetro
-			if (this.categoryName && categories.includes(this.categoryName)) {
-				this.productsService
-					.getByCategory(this.categoryName, this.limit, this.offset)
-					.subscribe((data) => {
-						this.products = data;
-					});
-			} else {
-				// Manejar el caso donde la categoría no es válida
-				console.error("Invalid category");
-			}
-		});
+		this.route.paramMap
+			.pipe(
+				switchMap((params) => {
+					this.categoryName = params.get("id");
+					if (this.categoryName) {
+						return this.productsService.getByCategory(
+							this.categoryName,
+							this.limit,
+							this.offset,
+						);
+					}
+					return [];
+				}),
+			)
+			.subscribe((data) => {
+				this.products = data;
+			});
 	}
 
 	//

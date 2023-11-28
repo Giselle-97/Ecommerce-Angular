@@ -2,6 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import { StoreService } from "src/app/services/store.service";
 import { AuthService } from "src/app/services/auth.service";
 import { User } from "../../models/user.model";
+import { CategoriesService } from "src/app/services/categories.service";
+import { Category } from "src/app/models/category.model";
 
 @Component({
 	selector: "app-header",
@@ -18,15 +20,18 @@ export class HeaderComponent implements OnInit {
 
 	activeMenu = false;
 	counter = 0;
+	categories: Category[] = [];
 
 	constructor(
 		private storeServices: StoreService,
 		private authService: AuthService,
+		private categoriesService: CategoriesService,
 	) {}
 	ngOnInit(): void {
 		this.storeServices.myCart$.subscribe((products) => {
 			this.counter = products.length;
 		});
+		this.getAllCategories();
 	}
 
 	toggleMenu() {
@@ -45,5 +50,10 @@ export class HeaderComponent implements OnInit {
 			.subscribe((user: User | null) => {
 				this.profile = user;
 			});
+	}
+	getAllCategories() {
+		this.categoriesService.getAll().subscribe((data) => {
+			this.categories = data;
+		});
 	}
 }
