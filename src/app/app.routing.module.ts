@@ -43,6 +43,10 @@ const routes: Routes = [
 		component: RecoveryComponent,
 	},
 	{
+		path: "profile",
+		component: ProfileComponent,
+	},
+	{
 		path: "**",
 		component: NotFoundComponent,
 	},

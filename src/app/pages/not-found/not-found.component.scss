@@ -1,0 +1,54 @@
+.container-imgNotFound {
+	height: 70vh;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+	gap: 20px;
+}
+.imgNotFound {
+	padding: 20px;
+	width: 270px;
+}
+
+.link {
+	text-decoration: none;
+	font-family: "Roboto Slab", serif;
+	font-weight: bold;
+	color: black;
+	&:hover {
+		color: rgba(0, 0, 255, 0.712);
+		border: 2px solid rgba(0, 0, 255, 0.712);
+		transition-duration: 0.5s;
+		padding: 5px 10px;
+	}
+	//color: white;
+}
+
+@media screen and (min-width: 768px) {
+	.container-imgNotFound {
+		height: 80vh;
+	}
+	.imgNotFound {
+		width: 400px;
+	}
+
+	.link {
+		font-size: 18px;
+	}
+}
+
+/* Large and up */
+@media screen and (min-width: 1024px) {
+	.container-imgNotFound {
+		height: 90vh;
+	}
+	.imgNotFound {
+		padding: 0;
+		width: 470px;
+	}
+
+	.link {
+		font-size: 20px;
+	}
+}
