@@ -5,7 +5,10 @@
 <p class="text-price">Price: {{ product.price | currency : "EUR" }}</p>
 <p class="text-price">IVA: {{ product.taxes ?? "" | currency : "EUR" }}</p>
 <div class="box-details">
-	<button class="btn-text" (click)="onShowDetail()">View Details</button>
+	<!--<button class="btn-text" (click)="onShowDetail()">View Details</button>-->
+	<a routerLink="." [queryParams]="{ product: product.id }" class="link"
+		>View Details</a
+	>
 	<button class="btn-car" (click)="onAddToCart()">
 		<img class="img-car" [src]="imgShoppingCart" alt="image" />
 	</button>

@@ -21,7 +21,7 @@
 	align-items: center;
 	padding: 5px 0;
 }
-.btn-text {
+/*.btn-text {
 	border: none;
 	color: blue;
 	background-color: transparent;
@@ -35,7 +35,19 @@
 		color: white;
 		transition-duration: 0.5s;
 	}
+}*/
+.link {
+	text-decoration: none;
+	font-family: "Roboto Slab", serif;
+	font-weight: bold;
+	text-transform: uppercase;
+	font-size: 0.7rem;
+	color: black;
+	&:hover {
+		color: rgba(0, 0, 255, 0.712);
+	}
 }
+
 .btn-car {
 	background-color: transparent;
 	border: none;
@@ -67,11 +79,8 @@
 		font-size: 0.8rem;
 		//padding-top: 5px;
 	}
-	.box-details {
-		//padding-top: 15px;
-	}
 
-	.btn-text {
+	.link {
 		font-size: 0.8rem;
 	}
 	.img-car {

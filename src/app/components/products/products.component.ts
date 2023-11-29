@@ -12,6 +12,13 @@ import { StoreService } from "src/app/services/store.service";
 })
 export class ProductsComponent {
 	@Input() products: Product[] = [];
+	// @Input() productId: string | null = null;
+	@Input()
+	set productId(id: string | null) {
+		if (id) {
+			this.onShowDetail(id);
+		}
+	}
 	@Output() loadMore = new EventEmitter();
 
 	myShoppingCart: Product[] = [];
@@ -48,8 +55,10 @@ export class ProductsComponent {
 	}
 
 	onShowDetail(id: string) {
-		this.statusDetail = "loading";
-		this.toggleProductDetail();
+		this.statusDetail = "loading"; //this.toggleProductDetail();
+		if (!this.showProductDetail) {
+			this.showProductDetail = true;
+		}
 		this.productsService.getProduct(id).subscribe(
 			(data) => {
 				this.productChosen = data;
@@ -61,7 +70,6 @@ export class ProductsComponent {
 			},
 		);
 	}
-
 	//Evitando el callback hell
 	//switchMap manejar dependencias
 	/*readAndUpdate(id: string) {
