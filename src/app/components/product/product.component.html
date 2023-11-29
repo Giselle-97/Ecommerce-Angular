@@ -1,4 +1,6 @@
-<img class="img-products" [src]="product.image" alt="image" />
+<a [routerLink]="['/products', product.id]"
+	><img class="img-products" [src]="product.image" alt="image"
+/></a>
 <h2 class="title-products">{{ product.title }}</h2>
 <p class="text-price">Price: {{ product.price | currency : "EUR" }}</p>
 <p class="text-price">IVA: {{ product.taxes ?? "" | currency : "EUR" }}</p>
