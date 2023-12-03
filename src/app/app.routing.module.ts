@@ -10,6 +10,7 @@ import { RegisterComponent } from "./website/pages/register/register.component";
 import { RecoveryComponent } from "./website/pages/recovery/recovery.component";
 import { ProfileComponent } from "./website/pages/profile/profile.component";
 import { ProductDetailComponent } from "./website/pages/product-detail/product-detail.component";
+import { CmsModule } from "./cms/cms.module";
 
 const routes: Routes = [
 	{
@@ -54,6 +55,10 @@ const routes: Routes = [
 				component: ProfileComponent,
 			},
 		],
+	},
+	{
+		path: "cms",
+		loadChildren: () => import("./cms/cms.module").then((m) => CmsModule),
 	},
 	{
 		path: "**",
