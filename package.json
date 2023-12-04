@@ -21,6 +21,7 @@
     "@angular/router": "^16.2.0",
     "boostrap": "^2.0.0",
     "file-saver": "^2.0.5",
+    "ngx-quicklink": "^0.4.4",
     "ngx-sweetalert2-repository": "github:sweetalert2/ngx-sweetalert2",
     "rxjs": "~7.8.0",
     "swiper": "^11.0.4",
