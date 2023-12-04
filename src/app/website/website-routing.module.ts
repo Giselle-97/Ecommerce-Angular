@@ -29,6 +29,9 @@ const routes: Routes = [
 					import("./pages/category/category.module").then(
 						(m) => m.CategoryModule,
 					),
+				data: {
+					preload: true,
+				},
 			},
 			{
 				path: "products/:id",
