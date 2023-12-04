@@ -133,9 +133,10 @@ export class FormRegisterComponent implements OnInit {
 	createUser() {
 		this.usersService
 			.create({
-				name: "Gis",
+				name: "Gis", //mor_2314
 				email: "gis@gmail.com",
-				password: "123456Gis",
+				password: "123456Gis", //83r5^_
+				role: "customer",
 			})
 			.subscribe((rta) => {
 				console.log(rta);
