@@ -3,7 +3,6 @@ import { CommonModule } from "@angular/common";
 import { WebsiteRoutingModule } from "./website-routing.module";
 import { HeaderComponent } from "./components/header/header.component";
 import { HomeComponent } from "./pages/home/home.component";
-import { CategoryComponent } from "./pages/category/category.component";
 import { MyCartComponent } from "./pages/my-cart/my-cart.component";
 import { LoginComponent } from "./pages/login/login.component";
 import { RegisterComponent } from "./pages/register/register.component";
@@ -17,7 +16,6 @@ import { LayoutComponent } from "./components/layout/layout.component";
 	declarations: [
 		HeaderComponent,
 		HomeComponent,
-		CategoryComponent,
 		MyCartComponent,
 		LoginComponent,
 		RegisterComponent,
